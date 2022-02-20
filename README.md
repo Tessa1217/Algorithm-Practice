@@ -1,2 +1,3 @@
-# practice
-# Tessa1217
+# Algorithm Practice Workspace
+* BaekJoon
+* Programmars
