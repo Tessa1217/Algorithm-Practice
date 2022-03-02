@@ -1,3 +1,6 @@
-# Algorithm Practice Workspace
+# Algorithm Practice Workspace 
+## Algorithm Questions
 * BaekJoon
 * Programmars
+## Language
+* Python
