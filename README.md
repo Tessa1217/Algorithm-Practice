@@ -4,3 +4,5 @@
 * Programmars
 ## Language
 * Python
+## Algorithms
+Brute Force
