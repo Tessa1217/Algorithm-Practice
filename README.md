@@ -5,4 +5,5 @@
 ## Language
 * Python
 ## Algorithms
-Brute Force
+* Brute Force
+* Stack
