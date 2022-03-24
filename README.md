@@ -7,3 +7,4 @@
 ## Algorithms
 * Brute Force
 * Stack
+* Binary Search
