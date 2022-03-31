@@ -8,3 +8,4 @@
 * Brute Force
 * Stack
 * Binary Search
+* Prime Number
