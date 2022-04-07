@@ -7,5 +7,6 @@
 ## Algorithms
 * Brute Force
 * Stack
+* Dequeue
 * Binary Search
 * Prime Number
