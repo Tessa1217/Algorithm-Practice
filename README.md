@@ -4,6 +4,8 @@
 * Programmars
 ## Language
 * Python
+## Environment
+* Google Colaboratory
 ## Algorithms
 * Brute Force
 * Stack
