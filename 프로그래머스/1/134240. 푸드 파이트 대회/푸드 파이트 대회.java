@@ -7,11 +7,8 @@ class Solution {
         
         for (int i = 1; i < food.length; i++) {
             int foodLength = food[i] / 2;
-            if (foodLength > 0) {
-                for (int j = 0; j < foodLength; j++) {
-                    sb.append(i);
-                }   
-            }
+            // 문자열 반복 메서드: repeat(int count)
+            sb.append(String.valueOf(i).repeat(foodLength));
         }
         
         String answer = sb.toString() + "0";
