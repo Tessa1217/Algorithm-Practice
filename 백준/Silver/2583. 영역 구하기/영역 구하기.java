@@ -64,8 +64,10 @@ public class Main {
             }
         }
         
+        // 분리되어 나누어지는 총 영역의 개수 출력
         System.out.println(separatedCnt);
         
+        // 각 영역별 넓이 세팅
         int[] areaCntArr = new int[separatedCnt];
         
         for (int i = 0; i < M; i++) {
@@ -76,6 +78,7 @@ public class Main {
             }   
         } 
         
+        // 넓이 오름차순으로 출력!!
         Arrays.sort(areaCntArr);
         
         for (int i = 0; i < areaCntArr.length; i++) {
