@@ -23,6 +23,9 @@ public class Main {
     // 가장 큰 그림의 영역
     static int maxPictureArea = 0;
     
+    // 그림 수
+    static int count = 0;
+    
     public static void main(String[] args) throws IOException {
         
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -43,8 +46,10 @@ public class Main {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (picture[i][j] == 1) {
+                    count = 0;
                     pictureCnt++;
-                    BFS(i, j);
+                    DFS(i, j);
+                    maxPictureArea = Math.max(count, maxPictureArea);
                 }
             }
         }
@@ -54,29 +59,19 @@ public class Main {
         
     }
     
-    private static void BFS(int x, int y) {
-                        
-        Queue<int[]> queue = new LinkedList<>();
-        queue.offer(new int[]{x, y});
-        picture[x][y] = pictureCnt;
-        int cnt = 1;
+    private static void DFS(int x, int y) {
         
-        while (!queue.isEmpty()) {
-            int[] current = queue.poll();
-            for (int i = 0; i < 4; i++) {
-                int nx = current[0] + dx[i];
-                int ny = current[1] + dy[i];
-                if (nx >= 0 && nx < n && ny >= 0 && ny < m) {
-                    if (picture[nx][ny] == 1) {
-                        picture[nx][ny] = pictureCnt;
-                        cnt++;
-                        queue.offer(new int[]{nx, ny});
-                    }
+        picture[x][y] = pictureCnt;
+        count++;
+        
+        for (int i = 0; i < 4; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if (nx >= 0 && nx < n && ny >= 0 && ny < m) {
+                if (picture[nx][ny] == 1) {
+                    DFS(nx, ny);
                 }
             }
-        }
-        
-        maxPictureArea = Math.max(cnt, maxPictureArea);
-        
+        }                
     }
 }
