@@ -43,7 +43,9 @@ public class Main {
                 StringTokenizer ster = new StringTokenizer(br.readLine());
                 int a = Integer.parseInt(ster.nextToken());
                 int b = Integer.parseInt(ster.nextToken());
-                int s = Integer.parseInt(ster.nextToken());                
+                int s = Integer.parseInt(ster.nextToken());       
+                // 주의사항: a가 b에 의존한다면 b가 감염될 경우 a도 감염 
+                // (양방향으로 연결해서 자꾸 틀렸다...)
                 computers.get(b).add(new Computer(a, s));
             }
             
