@@ -1,7 +1,6 @@
-import java.util.Arrays;
-import java.util.Queue;
-import java.util.LinkedList;
 import java.util.Stack;
+import java.util.PriorityQueue;
+import java.util.Comparator;
 
 class Solution {
     
@@ -9,15 +8,12 @@ class Solution {
         
         String[] answer = new String[plans.length];
         
-        // 시작 시간 기준으로 오름차순 정렬 
-        Arrays.sort(plans, (p1, p2) -> p1[1].compareTo(p2[1]));
-        
-        // 과제 진행 큐        
-        Queue<Homework> queue = new LinkedList<>();
+        // 과제 진행 우선순위 큐
+        PriorityQueue<Homework> queue = new PriorityQueue<>(Comparator.comparingInt(h -> h.start));        
         for (int i = 0; i < plans.length; i++) {            
             queue.offer(convertArrToHomework(plans[i]));            
         }
-        
+
         int idx = 0;
         Stack<Homework> leftHomework = new Stack<>();
         
@@ -30,7 +26,7 @@ class Solution {
             }
             // 종료 시간
             int endTime = current.start + current.playtime;
-            // 과제 종료 시간이 다음 과제 시작시간보다 크다면
+            // 과제 종료 시간이 다음 과제 시작시간보다 크다면            
             if (queue.peek().start < endTime) {
                 int leftPlaytime = endTime - queue.peek().start;
                 // 지연 과제 스택에 push                
