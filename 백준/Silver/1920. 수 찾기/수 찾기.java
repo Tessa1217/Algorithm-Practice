@@ -1,60 +1,53 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
+import java.util.StringTokenizer;
 import java.util.Arrays;
 
 public class Main {
     
-    // 숫자 배열
-    static int[] numArr;
+    static int[] nArr;
     
     public static void main(String[] args) throws IOException {
-        
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         
         int N = Integer.parseInt(br.readLine());
-        String[] arr = br.readLine().split(" ");
-        numArr = new int[N];
+        nArr = new int[N];
+        StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
-            numArr[i] = Integer.parseInt(arr[i]);
+            nArr[i] = Integer.parseInt(st.nextToken());
         }
-        // 탐색할 배열 오름차순으로 정렬
-        Arrays.sort(numArr);        
         
-        int M = Integer.parseInt(br.readLine());
-        String[] arrM = br.readLine().split(" ");
+        Arrays.sort(nArr);
         
-        br.close();
-        
+        int M = Integer.parseInt(br.readLine());        
+        st = new StringTokenizer(br.readLine());
         StringBuilder sb = new StringBuilder();
-        
         for (int i = 0; i < M; i++) {
-            int target = Integer.parseInt(arrM[i]);
-            int search = binarySearch(0, N - 1, target);
-            if (search == -1) {
-                sb.append("0").append("\n");
-            } else {
+            int m = Integer.parseInt(st.nextToken());
+            if (binarySearch(m)) {
                 sb.append("1").append("\n");
+            } else {
+                sb.append("0").append("\n");
             }
-        }
+        }                  
         
-        System.out.println(sb);
-        
+        System.out.println(sb.toString());
     }
     
-    // 이진 탐색
-    private static int binarySearch(int start, int end, int target) {
-        int mid;
-        if (start <= end) {
-            mid = (start + end) / 2;
-            if (numArr[mid] == target) {
-                return mid;
-            } else if (numArr[mid] < target) {
-                return binarySearch(mid + 1, end, target);
-            } else if (numArr[mid] > target) {
-                return binarySearch(start, mid - 1, target);
+    private static boolean binarySearch(int n) {
+        int left = 0;
+        int right = nArr.length - 1;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (nArr[mid] > n) {
+                right = mid - 1;
+            } else if (nArr[mid] < n) {
+                left = mid + 1;
+            } else {
+                return true;
             }
         }
-        return -1;
+        return false;
     }
 }
