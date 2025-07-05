@@ -16,7 +16,8 @@ function getMaxNonDivisor(array, gcd) {
 
 // 숫자 카드의 최대 공약수 구하기
 function getGcdOfCards(array) {
-    return array.reduce((a, b) => gcd(Math.min(a, b), Math.max(a, b)))
+    
+    return array.reduce((a, b) => gcd(Math.max(a, b), Math.min(a, b)))
 }
 
 // 유클리드 호제법을 통해 두 수의 최대 공약수 찾기
