@@ -13,8 +13,8 @@ class Solution {
         
         for (int i = 0; i < parsedArr.length; i++) {
             String[] arr = parsedArr[i].split(",");
-            for (int j = 0; j < arr.length; j++) {
-                Integer num = Integer.parseInt(arr[j]);                
+            for (String numStr : arr) {
+                Integer num = Integer.parseInt(numStr);                
                 if (answer.indexOf(num) > -1) {
                     continue;
                 } 
