@@ -21,14 +21,16 @@ function solution(dirs) {
             continue;
         }
                 
-        route_set.add(generate_route_string(rx, ry, nx, ny));
+        route_set.add("" + rx + ry + nx + ny);
+        route_set.add("" + nx + ny + rx + ry);
+                
         
         rx = nx
         ry = ny
         
     }
     
-    return route_set.size;
+    return route_set.size / 2;
 }
 
 function generate_route_string(rx, ry, nx, ny) {
