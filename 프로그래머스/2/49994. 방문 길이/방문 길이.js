@@ -1,5 +1,4 @@
-function solution(dirs) {
-    var answer = 0;
+function solution(dirs) {    
     
     const dir_coord = {
         "U" : [1, 0],
@@ -33,8 +32,5 @@ function solution(dirs) {
 }
 
 function generate_route_string(rx, ry, nx, ny) {
-    // if (rx > nx) {
-    //     return `${rx}${ry}${nx}${ny}`
-    // }
     return `${Math.min(rx, nx)}${Math.min(ry, ny)}${Math.max(rx, nx)}${Math.max(ry, ny)}`
 }
