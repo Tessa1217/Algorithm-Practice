@@ -14,16 +14,9 @@ def solution(dirs):
         if nx < -5 or nx > 5 or ny < -5 or ny > 5:
             continue
                 
-        cur_x, cur_y = rx, ry            
+        map_route.add((nx, ny, rx, ry))
+        map_route.add((rx, ry, nx, ny))
         
-        rx, ry = nx, ny
-                
-        if nx > cur_x:
-            cur_x, nx = nx, cur_x
-        if ny > cur_y:
-            cur_y, ny = ny, cur_y
-                
-        map_route.add(str(cur_x) + str(cur_y) + str(nx) + str(ny))
-                
+        rx, ry = nx, ny        
             
-    return len(map_route)
+    return len(map_route) // 2
