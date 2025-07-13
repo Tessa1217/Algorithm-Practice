@@ -50,13 +50,14 @@ class Solution {
             // 이동 전 위치 -> 이동 후 위치를 String 형태로 저장 (ex) 0010
             // 00 -> 10간 거랑 10 -> 00 간 거랑 동일하게 본다면...?            
             robot_route.add(map_route(rx, ry, nx, ny));
+            robot_route.add(map_route(nx, ny, rx, ry));
             
             rx = nx;
             ry = ny;            
             
         }
         
-        return robot_route.size();
+        return (int) robot_route.size() / 2;
     }
     
     private boolean is_robot_in_range(int rx, int ry) {
@@ -65,10 +66,7 @@ class Solution {
     
     private String map_route(int rx, int ry, int nx, int ny) {
         StringBuilder sb = new StringBuilder();
-        sb.append(Math.min(rx, nx))
-          .append(Math.min(ry, ny))
-          .append(Math.max(rx, nx))
-          .append(Math.max(ry, ny));
+        sb.append(rx).append(ry).append(nx).append(ny);
         return sb.toString();
     }
     
