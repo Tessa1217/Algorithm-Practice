@@ -18,6 +18,7 @@ def solution(maps):
     dy = [0, 0, 1, -1]
     
     visited = {}
+    visited[(start[0], start[1])] = True
     
     # 레버를 먼저 누르고 탈출구를 가야 열리기 때문에 레버로 가는 최단거리 먼저 구하기
     while queue:
