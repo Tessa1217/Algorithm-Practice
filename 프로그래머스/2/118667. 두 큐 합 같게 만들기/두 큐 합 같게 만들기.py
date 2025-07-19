@@ -8,42 +8,40 @@ from collections import deque
 
 def solution(queue1, queue2):
     
-    queue1_sum = get_sum_of_queue(queue1)
-    queue2_sum = get_sum_of_queue(queue2)      
+    queue1_sum = sum(queue1)
+    queue2_sum = sum(queue2)   
+    total_sum = queue1_sum + queue2_sum
+    
+    # 홀수라면 절대 같게 만들 수 없으므로 -1 리턴
+    if total_sum % 2 != 0:
+        return -1
     
     # 이미 두 큐의 합이 같은 경우라면
     if queue1_sum == queue2_sum:
         return 0        
     
-    return pop_and_insert_process(queue1, queue1_sum, queue2, queue2_sum)
-
-def pop_and_insert_process(queue1, queue1_sum, queue2, queue2_sum):                
-    q1, q2 = deque(queue1), deque(queue2)        
+    max_process_cnt = len(queue1) * 3
+    q1, q2 = deque(queue1), deque(queue2)
+    target = total_sum // 2
     process_cnt = 0
-
-    # q1이 비지 않거나, q2가 비지 않거나, 최대 연산 횟수 (두 큐의 길이의 곱) 이하이면
-    while q1 and q2 and process_cnt <= len(q1) + len(q2) + 1:
-
-        if queue1_sum > queue2_sum:
-            cur_element = q1.popleft()
-            q2.append(cur_element)
-            queue1_sum, queue2_sum = queue1_sum - cur_element, queue2_sum + cur_element
-        else:
-            cur_element = q2.popleft()
-            q1.append(cur_element)
-            queue1_sum, queue2_sum = queue1_sum + cur_element, queue2_sum - cur_element  
-        process_cnt += 1
-
-        if queue1_sum == queue2_sum:
-            return process_cnt
-
-    return -1
-
+    i, j = 0, 0
+    cur_sum = sum(q1)
     
-
-# 주어진 큐의 합을 구하기
-def get_sum_of_queue(queue):
-    sum = 0
-    for element in queue:
-        sum += element
-    return sum
+    # 두 큐를 하나로 이어 붙인 것처럼 여김
+    while process_cnt < max_process_cnt:
+        if cur_sum == target:
+            return process_cnt
+        elif cur_sum > target:
+            if q1:
+                value = q1.popleft()
+                cur_sum -= value
+                q2.append(value)
+            process_cnt += 1
+        else:
+            if q2:
+                value = q2.popleft()
+                cur_sum += value
+                q1.append(value)
+            process_cnt += 1
+    
+    return -1
