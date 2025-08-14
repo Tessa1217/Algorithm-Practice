@@ -12,11 +12,11 @@ function solution(cap, n, deliveries, pickups) {
     const skipFinishedSpot = () => {
         while (d >= 0 && deliveries[d] === 0) d--;
         while (c >= 0 && pickups[c] === 0) c--;
-    }
+    }    
     
-    skipFinishedSpot();
-    
+    // 배달 처리
     const processDelivery = (pointer, array) => {
+        // 배달/수거 가능한 capacity 세팅
         let load = cap;
         while (load > 0 && pointer >= 0) {
             if (array[pointer] === 0) {
@@ -32,6 +32,9 @@ function solution(cap, n, deliveries, pickups) {
         }
     }
     
+    // 첫 번째 거리 세팅
+    skipFinishedSpot();
+    
     // 배달 또는 수거 포인트가 남은 기간 동안
     while (d >= 0 || c >= 0) {
         const far = Math.max(d, c) + 1        
@@ -39,35 +42,9 @@ function solution(cap, n, deliveries, pickups) {
         
         // 먼 곳에서부터 배달하기
         processDelivery(d, deliveries)
-        processDelivery(c, pickups)
-//         let load = cap;
-//         while (load > 0 && d >= 0) {
-//             if (deliveries[d] === 0) {
-//                 d--
-//                 continue
-//             }
-//             const take = Math.min(deliveries[d], load);
-//             deliveries[d] -= take;
-//             load -= take;
-//             if (deliveries[d] === 0) {
-//                 d--
-//             }
-//         }
         
-//         // 먼 곳에서부터 수거하기
-//         load = cap;
-//         while (load > 0 && c >= 0) {
-//             if (pickups[c] === 0) {
-//                 c--
-//                 continue
-//             }
-//             const pick = Math.min(pickups[c], load)
-//             pickups[c] -= pick
-//             load -= pick
-//             if (pickups[c] === 0) {
-//                 c--
-//             }
-//         }
+        // 먼 곳에서부터 수거하기
+        processDelivery(c, pickups)
         
         skipFinishedSpot()
     }
